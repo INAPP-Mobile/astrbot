@@ -1,0 +1,13 @@
+# Git
+.git
+
+# Python / editor
+__pycache__
+*.pyc
+*.pyo
+.venv
+venv
+*.egg-info
+.DS_Store
+.vscode
+.idea
