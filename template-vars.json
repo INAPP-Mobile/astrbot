@@ -1,0 +1,8 @@
+{
+  "TZ": {
+    "name": "Timezone",
+    "defaultValue": "UTC",
+    "description": "Container timezone (e.g., UTC, America/New_York, Asia/Shanghai)",
+    "isOptional": true
+  }
+}
