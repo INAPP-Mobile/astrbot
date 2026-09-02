@@ -2,5 +2,9 @@
   "TZ": {
     "value": "UTC",
     "description": "Container timezone (e.g., UTC, America/New_York, Asia/Shanghai)"
+  },
+  "ASTRBOT_DASHBOARD_INITIAL_PASSWORD": {
+    "value": "Astrbot1",
+    "description": "Initial password for the AstrBot dashboard (username: astrbot). Must be 8+ chars with uppercase, lowercase, and digit. Change after first login."
   }
 }

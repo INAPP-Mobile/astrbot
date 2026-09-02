@@ -4,5 +4,11 @@
     "defaultValue": "UTC",
     "description": "Container timezone (e.g., UTC, America/New_York, Asia/Shanghai)",
     "isOptional": true
+  },
+  "ASTRBOT_DASHBOARD_INITIAL_PASSWORD": {
+    "name": "Dashboard Initial Password",
+    "defaultValue": "Astrbot1",
+    "description": "Initial password for the AstrBot dashboard (username: astrbot). Must be 8+ chars with uppercase, lowercase, and digit. Change after first login.",
+    "isOptional": false
   }
 }
