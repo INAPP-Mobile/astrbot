@@ -1,8 +1,47 @@
 # AstrBot — AI Agent Assistant & Chatbot Platform
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.app/deploy/astrbot)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.com/deploy/astrbot-1)
 
 AstrBot is an open-source AI agent assistant and chatbot platform that supports multiple messaging platforms, LLM providers, and plugin extensions. Deploy a self-hosted instance on Railway in one click.
+
+# Deploy and Host AstrBot
+
+Deploying AstrBot on Railway gives you a self-hosted AI agent platform with persistent storage, automatic scaling, and a managed environment. No server maintenance required.
+
+## About Hosting
+
+AstrBot runs as a single container on Railway with a persistent volume for SQLite data. The WebUI is served on port 6185 and accessible via your Railway public domain.
+
+## Why Deploy
+
+- **One-click deploy**: No manual server setup — Railway handles provisioning, networking, and SSL
+- **Persistent storage**: SQLite data survives restarts via Railway volume mounts
+- **Auto-redeploy**: Push to your connected GitHub repo to trigger fresh deploys
+- **Managed infrastructure**: Railway handles health checks, logging, and DNS
+
+## Common Use Cases
+
+- **Personal AI assistant**: Connect to your preferred LLM and chat from any platform
+- **Multi-platform bot**: Bridge QQ, Telegram, Discord, WeChat, and more through one backend
+- **Plugin development**: Build and test community plugins in a live environment
+- **Team chatbot**: Deploy a shared agent with session isolation and persona management
+
+## Dependencies for AstrBot
+
+AstrBot is fully self-contained. It bundles:
+- FastAPI web server
+- SQLite database (no external DB needed)
+- Plugin runtime with sandboxed execution
+- Multi-platform message adapters
+
+### Deployment Dependencies
+
+| Dependency | Type | Notes |
+|------------|------|-------|
+| Volume | Storage | Auto-mounted at `/AstrBot/data` for persistence |
+| Port 6185 | Network | WebUI + API (exposed publicly) |
+
+No external databases or third-party services are required.
 
 ## Features
 
@@ -14,32 +53,6 @@ AstrBot is an open-source AI agent assistant and chatbot platform that supports 
 - **Conversation management**: Session isolation, persona switching, and conversation history
 - **Multi-agent orchestration**: Sub-agent support for complex task delegation
 
-## Architecture
-
-```
-┌─────────────────────────────────────────────┐
-│  Messaging Platforms (QQ, Telegram, etc.)   │
-└──────────────────┬──────────────────────────┘
-                   │ WebSocket / HTTP
-                   ▼
-┌─────────────────────────────────────────────┐
-│  AstrBot Core (FastAPI on :6185)            │
-│  ┌─────────┐ ┌──────────┐ ┌──────────────┐ │
-│  │Platform │ │Provider  │ │Plugin        │ │
-│  │Manager  │ │Manager   │ │Manager       │ │
-│  └─────────┘ └──────────┘ └──────────────┘ │
-│  ┌─────────┐ ┌──────────┐ ┌──────────────┐ │
-│  │Conversa-│ │Persona   │ │Pipeline      │ │
-│  │tion Mgr │ │Manager   │ │Scheduler     │ │
-│  └─────────┘ └──────────┘ └──────────────┘ │
-└──────────────────┬──────────────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────────────┐
-│  LLM Providers (OpenAI, Claude, etc.)       │
-└─────────────────────────────────────────────┘
-```
-
 ## Configuration
 
 ### Environment Variables
@@ -47,21 +60,9 @@ AstrBot is an open-source AI agent assistant and chatbot platform that supports 
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `TZ` | `UTC` | Container timezone |
+| `ASTRBOT_DASHBOARD_INITIAL_PASSWORD` | `Astrbot1` | Initial dashboard password (set before first boot) |
 
-All other configuration is done through the WebUI after first login. The initial admin password is generated at startup and printed in the deployment logs.
-
-### Data Storage
-
-AstrBot uses SQLite for persistence, stored at `/AstrBot/data`. A Railway volume is automatically mounted to preserve data across deploys.
-
-## Deployment
-
-1. Click the **Deploy to Railway** button above
-2. Railway will provision the service and mount a persistent volume
-3. Once deployed, open the service URL to access the WebUI
-4. Check the deployment logs for the initial admin password
-5. Log in with username `astrbot` and the generated password
-6. Configure your LLM provider and messaging platform integrations
+All other configuration is done through the WebUI after first login.
 
 ## Ports
 
