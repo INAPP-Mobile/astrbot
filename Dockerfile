@@ -1,6 +1,6 @@
 # AstrBot — AI Agent Assistant & Chatbot Platform
 # https://github.com/AstrBotDevs/AstrBot
-FROM soulter/astrbot:latest
+FROM soulter/astrbot:v4.29.4
 
 # Railway healthcheck: root serves the FastAPI WebUI
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=5 \
